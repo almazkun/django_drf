@@ -10,6 +10,9 @@ up:
 	docker compose up -d web --build
 	docker compose up -d nginx
 	docker ps -a
+	
+ps:
+	docker ps -a
 
 down:
 	docker compose down	-v
@@ -33,6 +36,6 @@ logs:
 test:
 	docker compose run --rm --entrypoint="python" web manage.py test ${K}
 
-prod: _prod migrate collectstatic
+prod: _prod migrate collectstatic ps
 
 prod_restart: down prod
